@@ -1,0 +1,10 @@
+[package]
+name = "rustic-fps"
+version = "0.1.0"
+authors = ["TomSavas <tomas.savickas@protonmail.com>"]
+edition = "2018"
+
+[dependencies]
+
+[dependencies.sdl2]
+git = "https://github.com/rust-sdl2/rust-sdl2"
