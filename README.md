@@ -8,4 +8,4 @@ goal of trying out rust.
 SDL2 is required for this to work. It should be as simple as `cargo build`.
 
 ## Licence 
-This project is licenced under MIT Licence - see the [LICENCE](licence) file for details.
+This project is licenced under MIT Licence - see the [LICENCE](LICENCE) file for details.
