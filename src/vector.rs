@@ -1,6 +1,6 @@
 use std::ops;
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub struct Vec2f {
     x: f32,
     y: f32
@@ -42,6 +42,12 @@ impl Vec2f {
             y: self.x * sin + self.y * cos 
         }
     }   
+}
+
+impl PartialEq for Vec2f {
+    fn eq(&self, other: &Self) -> bool {
+        self.x == other.x && self.y == other.y
+    }
 }
 
 impl ops::Neg for Vec2f {
