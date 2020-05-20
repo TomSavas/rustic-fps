@@ -123,13 +123,16 @@ impl Game {
 
             let dt = frame_start_time.elapsed().as_micros();
             frame_times.push(dt);
-            if frame_times.len() > 1000 {
+            if frame_times.len() > 200 {
                 frame_times[index] = frame_times.last().unwrap().clone();
-                index = (index + 1) % 1000;
+                index = (index + 1) % 200;
                 frame_times.pop();
             }
             let avg_dt = frame_times.iter().sum::<u128>() / frame_times.len() as u128;
-            print!("\rFrame time: {} us, avg frame time: {} us", dt, avg_dt);
+            let fps = 1_000_000 / dt;
+            let avg_fps = 1_000_000 / avg_dt;
+            print!("\rFrame time: {} us, avg frame time: {} us, fps: {}, avg_fps; {}",
+                dt, avg_dt, fps, avg_fps);
             frame_start_time = std::time::Instant::now();
 
             self.handle_events(events, 0);
