@@ -6,11 +6,14 @@ goal of trying out rust. Also, due to boredom I decided to do the rendering
 on CPU. That is the CPU creates a texture and passes it to SDL to draw it on
 the screen.
 
+## Preview 
+![Preview](Previews/preview.gif)
+
 ### Prerequisites
 SDL2 is required for this to work. It should be as simple as `cargo build`.
 
 ### Todos
-- ~~ Get it actually rendering something ~~
+- ~~Get it actually rendering something~~
 - Get rid of the fisheye effect
 - For God's sake, make it render at more than 120 fps on my laptop at FHD, is this
   too much to ask out of this plate of spaghetti?
