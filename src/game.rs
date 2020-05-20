@@ -32,7 +32,7 @@ pub struct Game {
     game_opts: GameOpts,
     game_sdl_ctx: GameSdlCtx,
     map: Rc<RefCell<Map>>,
-    player: Rc<RefCell<Player>>,
+    pub player: Rc<RefCell<Player>>,
     camera: Rc<RefCell<Camera>>,
     components: Vec<Rc<RefCell<dyn GameComponent>>>
 }
@@ -51,7 +51,7 @@ pub trait GameComponent {
 
     /// Handles some subset of events and returns a new event vector
     /// with the handled events removed from it
-    fn handle_events<'a>(&mut self, events: Vec<Event>) -> Vec<Event> {
+    fn handle_events(&mut self, events: Vec<Event>) -> Vec<Event> {
         events.iter().cloned().filter_map(|e| self.handle_event(e)).collect()
     }
 
@@ -86,7 +86,7 @@ impl Game {
             .build()?;
 
         let map = Rc::new(RefCell::new(Map::new(game_opts.screen_width, game_opts.screen_height)));
-        let player = Rc::new(RefCell::new(Player::new(Vec2f::new(0.0, 0.0))));
+        let player = Rc::new(RefCell::new(Player::new(Vec2f::new(6.6, 5.0))));
         let camera = Rc::new(RefCell::new(Camera::new(45.0, &game_opts, Rc::clone(&player))));
 
         let mut game = Game {
