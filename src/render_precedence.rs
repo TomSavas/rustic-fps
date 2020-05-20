@@ -7,9 +7,9 @@ pub enum RenderPrecedence {
 
 pub fn to_numeric(render_recedence: RenderPrecedence) -> u32 {
     match render_recedence {
-        Gui => 0,
-        EffectOverlay => 1,
-        Map => 2,
-        CameraView => 3,
+        RenderPrecedence::Gui => 0,
+        RenderPrecedence::EffectOverlay => 1,
+        RenderPrecedence::Map => 2,
+        RenderPrecedence::CameraView => 3,
     }
 }

@@ -1,7 +1,5 @@
-use std::cell::RefCell;
 use std::convert::From;
 use std::f32;
-use std::rc::Rc;
 
 use sdl2::pixels::Color;
 use sdl2::pixels::PixelFormatEnum;

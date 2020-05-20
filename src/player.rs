@@ -86,7 +86,6 @@ impl GameComponent for Player {
                 Direction::Backward => self.pos = self.pos - (self.dir * 0.1),
                 Direction::Left => self.pos = self.pos + (self.dir.rotate(90.0) * 0.1),
                 Direction::Right => self.pos = self.pos + (self.dir.rotate(-90.0) * 0.1),
-                _ => (),
             };
         }
     }
