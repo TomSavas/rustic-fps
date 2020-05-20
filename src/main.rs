@@ -2,24 +2,24 @@ extern crate sdl2;
 
 use std::error::Error;
 
-mod vector;
+mod camera;
 mod game;
 mod map;
 mod player;
-mod camera;
 mod render_precedence;
+mod vector;
 
 use game::Game;
 use game::GameOpts;
 
 const TITLE: &'static str = "Rustic FPS";
 const SCREEN_WIDTH: u32 = 640;
-const SCREEN_HEIGHT: u32 = 480;
+const SCREEN_HEIGHT: u32 = 360;
 
 const GAME_OPTS: GameOpts = GameOpts {
     title: TITLE,
     screen_width: SCREEN_WIDTH,
-    screen_height: SCREEN_HEIGHT
+    screen_height: SCREEN_HEIGHT,
 };
 
 pub fn main() -> Result<(), Box<dyn Error>> {

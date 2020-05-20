@@ -2,7 +2,7 @@ pub enum RenderPrecedence {
     Gui,
     EffectOverlay,
     Map,
-    CameraView
+    CameraView,
 }
 
 pub fn to_numeric(render_recedence: RenderPrecedence) -> u32 {
@@ -10,6 +10,6 @@ pub fn to_numeric(render_recedence: RenderPrecedence) -> u32 {
         Gui => 0,
         EffectOverlay => 1,
         Map => 2,
-        CameraView => 3
+        CameraView => 3,
     }
 }

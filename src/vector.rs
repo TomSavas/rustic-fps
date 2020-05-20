@@ -3,12 +3,12 @@ use std::ops;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Vec2f {
     x: f32,
-    y: f32
+    y: f32,
 }
 
 impl Vec2f {
     pub fn new(x: f32, y: f32) -> Vec2f {
-        Vec2f{ x, y }
+        Vec2f { x, y }
     }
 
     pub fn x(&self) -> f32 {
@@ -37,7 +37,10 @@ impl Vec2f {
 
     pub fn normalize(&self) -> Self {
         let len = self.len();
-        Vec2f { x: self.x / len, y: self.y / len }
+        Vec2f {
+            x: self.x / len,
+            y: self.y / len,
+        }
     }
 
     /// Positive angle denote counter-clockwise rotation
@@ -45,18 +48,22 @@ impl Vec2f {
         let angle_rad = angle_deg.to_radians();
         let sin = angle_rad.sin();
         let cos = angle_rad.cos();
-        
-        Vec2f { x: self.x * cos - self.y * sin,
-            y: self.x * sin + self.y * cos 
+
+        Vec2f {
+            x: self.x * cos - self.y * sin,
+            y: self.x * sin + self.y * cos,
         }
-    }   
+    }
 }
 
 impl ops::Neg for Vec2f {
     type Output = Vec2f;
 
     fn neg(self) -> Self::Output {
-        Vec2f { x: -self.x, y: -self.y }
+        Vec2f {
+            x: -self.x,
+            y: -self.y,
+        }
     }
 }
 
@@ -64,7 +71,10 @@ impl ops::Neg for &Vec2f {
     type Output = Vec2f;
 
     fn neg(self) -> Self::Output {
-        Vec2f { x: -self.x, y: -self.y }
+        Vec2f {
+            x: -self.x,
+            y: -self.y,
+        }
     }
 }
 
@@ -72,7 +82,10 @@ impl ops::Add for Vec2f {
     type Output = Vec2f;
 
     fn add(self, other: Self) -> Self::Output {
-        Vec2f { x: self.x + other.x, y: self.y + other.y }
+        Vec2f {
+            x: self.x + other.x,
+            y: self.y + other.y,
+        }
     }
 }
 
@@ -80,7 +93,10 @@ impl ops::Add<&Vec2f> for Vec2f {
     type Output = Vec2f;
 
     fn add(self, other: &Vec2f) -> Self::Output {
-        Vec2f { x: self.x + other.x, y: self.y + other.y }
+        Vec2f {
+            x: self.x + other.x,
+            y: self.y + other.y,
+        }
     }
 }
 
@@ -88,7 +104,10 @@ impl ops::Add for &Vec2f {
     type Output = Vec2f;
 
     fn add(self, other: Self) -> Self::Output {
-        Vec2f { x: self.x + other.x, y: self.y + other.y }
+        Vec2f {
+            x: self.x + other.x,
+            y: self.y + other.y,
+        }
     }
 }
 
@@ -96,7 +115,10 @@ impl ops::Add<Vec2f> for &Vec2f {
     type Output = Vec2f;
 
     fn add(self, other: Vec2f) -> Self::Output {
-        Vec2f { x: self.x + other.x, y: self.y + other.y }
+        Vec2f {
+            x: self.x + other.x,
+            y: self.y + other.y,
+        }
     }
 }
 
@@ -104,7 +126,10 @@ impl ops::Sub for Vec2f {
     type Output = Vec2f;
 
     fn sub(self, other: Self) -> Self::Output {
-        Vec2f { x: self.x - other.x, y: self.y - other.y }
+        Vec2f {
+            x: self.x - other.x,
+            y: self.y - other.y,
+        }
     }
 }
 
@@ -112,7 +137,10 @@ impl ops::Sub<&Vec2f> for Vec2f {
     type Output = Vec2f;
 
     fn sub(self, other: &Vec2f) -> Self::Output {
-        Vec2f { x: self.x - other.x, y: self.y - other.y }
+        Vec2f {
+            x: self.x - other.x,
+            y: self.y - other.y,
+        }
     }
 }
 
@@ -120,7 +148,10 @@ impl ops::Sub for &Vec2f {
     type Output = Vec2f;
 
     fn sub(self, other: Self) -> Self::Output {
-        Vec2f { x: self.x - other.x, y: self.y - other.y }
+        Vec2f {
+            x: self.x - other.x,
+            y: self.y - other.y,
+        }
     }
 }
 
@@ -128,7 +159,10 @@ impl ops::Sub<Vec2f> for &Vec2f {
     type Output = Vec2f;
 
     fn sub(self, other: Vec2f) -> Self::Output {
-        Vec2f { x: self.x - other.x, y: self.y - other.y }
+        Vec2f {
+            x: self.x - other.x,
+            y: self.y - other.y,
+        }
     }
 }
 
@@ -136,7 +170,10 @@ impl ops::Mul<f32> for Vec2f {
     type Output = Vec2f;
 
     fn mul(self, other: f32) -> Self::Output {
-        Vec2f { x: self.x * other, y: self.y * other }
+        Vec2f {
+            x: self.x * other,
+            y: self.y * other,
+        }
     }
 }
 
@@ -144,7 +181,10 @@ impl ops::Mul<f32> for &Vec2f {
     type Output = Vec2f;
 
     fn mul(self, other: f32) -> Self::Output {
-        Vec2f { x: self.x * other, y: self.y * other }
+        Vec2f {
+            x: self.x * other,
+            y: self.y * other,
+        }
     }
 }
 
@@ -152,7 +192,10 @@ impl ops::Div<f32> for Vec2f {
     type Output = Vec2f;
 
     fn div(self, other: f32) -> Self::Output {
-        Vec2f { x: self.x / other, y: self.y / other }
+        Vec2f {
+            x: self.x / other,
+            y: self.y / other,
+        }
     }
 }
 
@@ -160,6 +203,9 @@ impl ops::Div<f32> for &Vec2f {
     type Output = Vec2f;
 
     fn div(self, other: f32) -> Self::Output {
-        Vec2f { x: self.x / other, y: self.y / other }
+        Vec2f {
+            x: self.x / other,
+            y: self.y / other,
+        }
     }
 }
