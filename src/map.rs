@@ -59,7 +59,7 @@ impl game::GameComponent for Map {
                 for x in 0..20 {
                     let index = y * 20 + x;
                     let buffer_index = index * 3;
-                    if x == *last_player_pos.x() as usize && y == *last_player_pos.y() as usize {
+                    if x == last_player_pos.x() as usize && y == last_player_pos.y() as usize {
                         buffer[buffer_index] = 255 as u8;
                         buffer[buffer_index + 1] = 0 as u8;
                         buffer[buffer_index + 2] = 255;

@@ -38,20 +38,20 @@ impl Camera {
     }
 
     fn calculate_distance_to_wall(&self, pos: &Vec2f, ray_dir: &Vec2f) -> Vec2f {
-        let rounded_pos = Vec2f::new(*pos.x() as u32 as f32, *pos.y() as u32 as f32);
+        let rounded_pos = Vec2f::new(pos.x() as u32 as f32, pos.y() as u32 as f32);
 
-        let mut distance_to_x_wall = *rounded_pos.x() - *pos.x();
+        let mut distance_to_x_wall = rounded_pos.x() - pos.x();
         if distance_to_x_wall == 0.0 {
             distance_to_x_wall = ray_dir.x().signum();
         } else {
-            distance_to_x_wall += if *ray_dir.x() > 0.0 { 1.0 } else { 0.0 };
+            distance_to_x_wall += if ray_dir.x() > 0.0 { 1.0 } else { 0.0 };
         }
 
-        let mut distance_to_y_wall = *rounded_pos.y() - *pos.y();
+        let mut distance_to_y_wall = rounded_pos.y() - pos.y();
         if distance_to_y_wall == 0.0 {
             distance_to_y_wall = ray_dir.y().signum();
         } else {
-            distance_to_y_wall += if *ray_dir.y() > 0.0 { 1.0 } else { 0.0 };
+            distance_to_y_wall += if ray_dir.y() > 0.0 { 1.0 } else { 0.0 };
         }
         
         Vec2f::new( distance_to_x_wall, distance_to_y_wall)
@@ -98,13 +98,13 @@ impl GameComponent for Camera {
 
                 pos = pos + ray_dir * ray_continuation_coeff;
 
-                let x_index = if *pos.x() == pos.x().trunc()
-                    { if *ray_dir.x() > 0.0 { *pos.x() as usize } else { *pos.x() as usize - 1 }}
-                    else { *pos.x() as usize };
+                let x_index = if pos.x() == pos.x().trunc()
+                    { if ray_dir.x() > 0.0 { pos.x() as usize } else { pos.x() as usize - 1 }}
+                    else { pos.x() as usize };
 
-                let y_index = if *pos.y() == pos.y().trunc()
-                    { if *ray_dir.y() > 0.0 { *pos.y() as usize } else { *pos.y() as usize - 1 }}
-                    else { *pos.y() as usize };
+                let y_index = if pos.y() == pos.y().trunc()
+                    { if ray_dir.y() > 0.0 { pos.y() as usize } else { pos.y() as usize - 1 }}
+                    else { pos.y() as usize };
                 
 
                 let map_index = x_index + y_index * 20;

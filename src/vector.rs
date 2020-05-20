@@ -1,6 +1,6 @@
 use std::ops;
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Vec2f {
     x: f32,
     y: f32
@@ -11,12 +11,12 @@ impl Vec2f {
         Vec2f{ x, y }
     }
 
-    pub fn x(&self) -> &f32 {
-        &self.x
+    pub fn x(&self) -> f32 {
+        self.x
     }
 
-    pub fn y(&self) -> &f32 {
-        &self.y
+    pub fn y(&self) -> f32 {
+        self.y
     }
 
     pub fn sqr_len(&self) -> f32 {
@@ -27,13 +27,21 @@ impl Vec2f {
         self.sqr_len().sqrt()
     }
 
-    pub fn normalize(self) -> Self {
+    pub fn dot(&self, other: &Self) -> f32 {
+        self.x * other.x + self.y * other.y
+    }
+
+    pub fn project_onto(&self, other: &Self) -> f32 {
+        self.dot(other) / other.len()
+    }
+
+    pub fn normalize(&self) -> Self {
         let len = self.len();
         Vec2f { x: self.x / len, y: self.y / len }
     }
 
-    /// Positive angle denotes counter-clockwise rotation
-    pub fn rotate(self, angle_deg: f32) -> Self {
+    /// Positive angle denote counter-clockwise rotation
+    pub fn rotate(&self, angle_deg: f32) -> Self {
         let angle_rad = angle_deg.to_radians();
         let sin = angle_rad.sin();
         let cos = angle_rad.cos();
@@ -42,12 +50,6 @@ impl Vec2f {
             y: self.x * sin + self.y * cos 
         }
     }   
-}
-
-impl PartialEq for Vec2f {
-    fn eq(&self, other: &Self) -> bool {
-        self.x == other.x && self.y == other.y
-    }
 }
 
 impl ops::Neg for Vec2f {
