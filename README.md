@@ -10,7 +10,7 @@ the screen.
 SDL2 is required for this to work. It should be as simple as `cargo build`.
 
 ### Todos
-- Get it actually rendering something
+- ~~ Get it actually rendering something ~~
 - Get rid of the fisheye effect
 - For God's sake, make it render at more than 120 fps on my laptop at FHD, is this
   too much to ask out of this plate of spaghetti?
