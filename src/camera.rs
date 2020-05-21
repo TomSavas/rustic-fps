@@ -140,7 +140,7 @@ impl GameComponent for Camera {
 
             let camera_view_width = self.camera_view.width();
             let camera_view_height = self.camera_view.height();
-            let dst = (pos - org_pos).len();
+            let dst = (pos - org_pos).project_onto(game.player().dir());
             let block_size = (camera_view_height as f32) / dst;
             let block_size: u32 = if block_size > (camera_view_height / 2) as f32 {
                 camera_view_height / 2
