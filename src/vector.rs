@@ -27,6 +27,17 @@ impl Vec2f {
         self.sqr_len().sqrt()
     }
 
+    pub fn get_smaller_abs_coeff(&self) -> f32 {
+        let x = self.x.abs();
+        let y = self.y.abs();
+
+        if x <= y {
+            x
+        } else {
+            y
+        }
+    }
+
     pub fn dot(&self, other: &Self) -> f32 {
         self.x * other.x + self.y * other.y
     }
@@ -35,11 +46,25 @@ impl Vec2f {
         self.dot(other) / other.len()
     }
 
+    pub fn div_coeffs(&self, other: &Self) -> Self {
+        Vec2f { 
+            x: self.x / other.x,
+            y: self.y / other.y,
+        }
+    }
+
     pub fn normalize(&self) -> Self {
         let len = self.len();
         Vec2f {
             x: self.x / len,
             y: self.y / len,
+        }
+    }
+
+    pub fn truncate(&self) -> Self {
+        Vec2f { 
+            x: self.x.trunc(),
+            y: self.y.trunc(),
         }
     }
 
@@ -53,6 +78,13 @@ impl Vec2f {
             x: self.x * cos - self.y * sin,
             y: self.x * sin + self.y * cos,
         }
+    }
+}
+
+type ExplodedVec2f = (f32, f32);
+impl Into<ExplodedVec2f> for Vec2f {
+    fn into(self) -> ExplodedVec2f {
+        ( self.x, self.y )
     }
 }
 

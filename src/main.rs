@@ -6,6 +6,7 @@ mod camera;
 mod game;
 mod map;
 mod player;
+mod rays;
 mod render_precedence;
 mod vector;
 
