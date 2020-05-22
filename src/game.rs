@@ -100,7 +100,7 @@ impl Game {
                     game_opts.screen_width,
                     game_opts.screen_height,
                 ))),
-                Rc::new(RefCell::new(Camera::new(33.0, 15.0, &game_opts))),
+                Rc::new(RefCell::new(Camera::new(33.0, 18.0, &game_opts))),
                 Rc::clone(&(player as Rc<RefCell<dyn GameComponent>>)),
             ],
 

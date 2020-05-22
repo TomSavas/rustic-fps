@@ -8,6 +8,7 @@ mod map;
 mod player;
 mod rays;
 mod render_precedence;
+mod textures;
 mod vector;
 
 use game::Game;

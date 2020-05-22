@@ -14,3 +14,6 @@ Cargo.lock
 **/*.rs.bk
 
 # End of https://www.gitignore.io/api/rust
+
+# Ignore any textures due to them being under a copyright
+/textures/
