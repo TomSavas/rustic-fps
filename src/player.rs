@@ -71,21 +71,22 @@ impl Player {
 }
 
 impl GameComponent for Player {
-    fn update(&mut self, _: &Game, _: u32) {
+    fn update(&mut self, _: &Game, dt: u32) {
+        let dt_s = dt as f32 / 1_000_000.0;
         if let Some(dir) = self.rotate_dir_buf.last() {
             match dir {
-                Direction::Left => self.dir = self.dir.rotate(2.0),
-                Direction::Right => self.dir = self.dir.rotate(-2.0),
+                Direction::Left => self.dir = self.dir.rotate(2.0 / 0.016 * dt_s),
+                Direction::Right => self.dir = self.dir.rotate(-2.0 / 0.016 * dt_s),
                 _ => (),
             };
         }
 
         if let Some(dir) = self.move_dir_buf.last() {
             match dir {
-                Direction::Forward => self.pos = self.pos + (self.dir * 0.1),
-                Direction::Backward => self.pos = self.pos - (self.dir * 0.1),
-                Direction::Left => self.pos = self.pos + (self.dir.rotate(90.0) * 0.1),
-                Direction::Right => self.pos = self.pos + (self.dir.rotate(-90.0) * 0.1),
+                Direction::Forward => self.pos = self.pos + (self.dir * 0.15 / 0.016 * dt_s),
+                Direction::Backward => self.pos = self.pos - (self.dir * 0.15 / 0.016 * dt_s),
+                Direction::Left => self.pos = self.pos + (self.dir.rotate(90.0) * 0.15 / 0.016 * dt_s),
+                Direction::Right => self.pos = self.pos + (self.dir.rotate(-90.0) * 0.15 / 0.016 * dt_s),
             };
         }
     }
