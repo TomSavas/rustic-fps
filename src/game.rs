@@ -3,6 +3,7 @@ use std::cell::RefCell;
 use std::collections::LinkedList;
 use std::error::Error;
 use std::rc::Rc;
+use std::{thread, time};
 
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
@@ -31,10 +32,11 @@ struct GameSdlCtx {
 }
 
 pub struct Game {
-    game_opts: GameOpts,
-    game_sdl_ctx: GameSdlCtx,
     player: Rc<RefCell<Player>>,
     components: Vec<Rc<RefCell<dyn GameComponent>>>,
+
+    game_opts: GameOpts,
+    game_sdl_ctx: GameSdlCtx,
 }
 
 pub trait GameComponent {
@@ -121,19 +123,23 @@ impl Game {
         let mut frame_start_time = std::time::Instant::now();
         let mut frame_times = LinkedList::new();
 
+        let target_frametime_us = 16_000;
         loop {
             let dt = frame_start_time.elapsed().as_micros();
+            frame_start_time = std::time::Instant::now();
             frame_times.push_front(dt);
             if frame_times.len() > 200 {
                 frame_times.pop_back();
             }
             let avg_dt = frame_times.iter().sum::<u128>() as f32 / frame_times.len() as f32;
-            frame_start_time = std::time::Instant::now();
             print!(
                 "\rAvg frametime: {} us, avg fps: {}",
                 avg_dt,
-                1_000_000.0 / avg_dt
+                1_000_000.0 / avg_dt,
             );
+            if dt < target_frametime_us {
+                thread::sleep(time::Duration::from_micros((target_frametime_us - dt) as u64));
+            }
 
             let events: Vec<Event> = self.game_sdl_ctx.event_pump.poll_iter().collect();
             if self.exit_requested(&events) {
